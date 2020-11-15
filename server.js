@@ -12,8 +12,6 @@ app.get('/',(req,res)=>{
 // set template engine
 app.use(expressLayouts)
 
-app.set('views',path.join(__dirname,'/resources/views'))
-app.set('view engine','ejs')
 
 const port=process.env.PORT || 3000
 app.listen(port,()=>{
