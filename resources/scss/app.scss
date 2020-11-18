@@ -1,5 +1,9 @@
 @import './variables';
 
+@import '~noty/src/noty.scss';
+@import '~noty/src/themes/mint.scss';
+
+
 body{
     font-family: 'lato',sans-serif;
     -webkit-font-smoothing:antialiased;
@@ -11,8 +15,9 @@ body{
     width: 90px;
 }
 .cart{
-    height: 65px;
-    width: 90px;
+    height: 40px;
+    width: 40px;
+    border-radius: 25px;   
 }
 nav li:last-child a{
     background: $primary;
@@ -43,6 +48,9 @@ section.hero{
         background: $primary;
         border-color: $pure;
         color: $pure;
+    }
+    &:focus{
+        outline: none;
     }
 }
 .order{
@@ -82,4 +90,10 @@ section.register{
             color: $primary-hover;
         }
     }
+}
+
+.noty_theme__mint{
+    border-radius: 50px!important;
+    padding-left: 8px!important;
+    
 }
