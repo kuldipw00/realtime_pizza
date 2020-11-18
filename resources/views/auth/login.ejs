@@ -8,7 +8,13 @@
             </h2>
           
           </div>
-          <form class="mt-8" action="#" method="POST">
+          <form class="mt-8 bg-white rounded shadow-md px-8 pt-6 pb-8" action="/login" method="POST">
+
+            <% if (messages.error) {%>
+
+              <span class="text-red-500 text-sm pt-6"><%=messages.error%></span>
+  
+              <%}%> 
             <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm">
               <div class="mb-4">

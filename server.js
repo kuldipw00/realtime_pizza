@@ -3,8 +3,8 @@ const app=express()
 const ejs=require("ejs")
 const path=require('path')
 const expressLayouts=require("express-ejs-layouts")
+const passport=require('passport')
 const { dirname } = require('path')
-
 const mongoose=require('mongoose')
 const session = require('express-session')
 const flash=require('express-flash')
@@ -21,10 +21,16 @@ connection.once('open',()=>{
     console.log('connection failed...')
 })
 
+
+
+
+
 let mongoStore=new MongoDbStore({
     mongooseConnection:connection,
     collection:'session'
 })
+
+app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use(session({
     secret:process.env.COOKIE_SECRET,
@@ -34,12 +40,23 @@ app.use(session({
     cookie:{maxAge:1000*60*60*24}//24hours
 }))
 
+//passport config 
+const passInit=require('./app/config/passport')
+
+passInit(passport)
+
+
+
+app.use(passport.initialize());
+app.use(passport.session())
+
 app.use(flash())
 app.use(express.static('public'))
 //global middleware
 
 app.use((req,res,next)=>{
     res.locals.session=req.session
+    res.locals.user=req.user
     next()    
 })
 app.use(expressLayouts)
