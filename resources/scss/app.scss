@@ -53,7 +53,7 @@ section.hero{
         outline: none;
     }
 }
-.order{
+.order-now{
     border: 2px solid $primary;
     background: $primary;
     color: $pure;
@@ -96,4 +96,8 @@ section.register{
     border-radius: 50px!important;
     padding-left: 8px!important;
     
+}
+
+a.link{
+    color: $primary;
 }

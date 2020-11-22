@@ -1,10 +1,12 @@
 
 import axios from 'axios'
 import Noty from 'noty'
-const { update } = require("../../app/http/models/menu");
+//const { update } = require("../../app/http/models/menu");
+import initAdmin from './admin.js'
 
 let addToCart=document.querySelectorAll('.add-cart')
 let cartCounter=document.querySelector('#cartCounter')
+
 
 function updateCart(pizza){
     axios.post('/update-cart',pizza).then(res=>{
@@ -29,3 +31,13 @@ addToCart.forEach((btn)=>{
       
     })
 })
+
+
+
+
+
+initAdmin()
+
+
+
+

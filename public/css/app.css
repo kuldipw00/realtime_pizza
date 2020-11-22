@@ -360,14 +360,14 @@ section.hero {
   outline: none;
 }
 
-.order {
+.order-now {
   border: 2px solid #FE5F1E;
   background: #FE5F1E;
   color: #fff;
   transition: all 0.3s ease-in-out;
 }
 
-.order:hover {
+.order-now:hover {
   background: #FE5F1E;
   border-color: #fff;
   color: #fff;
@@ -410,5 +410,9 @@ section.register a:hover {
 .noty_theme__mint {
   border-radius: 50px !important;
   padding-left: 8px !important;
+}
+
+a.link {
+  color: #FE5F1E;
 }
 
