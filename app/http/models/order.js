@@ -19,7 +19,7 @@ const orderSchema=mongoose.Schema({
         },
     address:{type:String,required:true},
     paymentType:{type:String,default:'COD'},
-    status:{type:String,default:'Order placed'}
+    status:{type:String,default:'order_placed'}
 
 },{timestamps:true})
 

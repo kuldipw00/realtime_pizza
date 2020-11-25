@@ -9,6 +9,7 @@ const mongoose=require('mongoose')
 const session = require('express-session')
 const flash=require('express-flash')
 const MongoDbStore =require('connect-mongo')(session)
+const emitter=require('events')
 //database cneection
 
 const url="mongodb://127.0.0.1:27017/pizzas";
@@ -29,6 +30,10 @@ let mongoStore=new MongoDbStore({
     mongooseConnection:connection,
     collection:'session'
 })
+
+const eventEmitter=new emitter()
+
+app.set('eventEmitter',eventEmitter)
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
@@ -69,10 +74,24 @@ app.set('view engine','ejs')
 
 require('./routes/web')(app)
 
-
-
-
 const port=process.env.PORT || 3000
-app.listen(port,()=>{
+const server=app.listen(port,()=>{
     console.log(`Listening on port ${port}`)
+})
+
+//Socket
+const io =require('socket.io')(server)
+
+io.on('connection',(socket)=>{
+    //join
+    
+    socket.on('join',(roomName)=>{
+        console.log(roomName)
+        socket.join(roomName)
+    })
+})
+
+eventEmitter.on('orderUpdated',(data)=>{
+    io.to(`order_${data.id}`).emit('orderUpdated',data)
+    console.log(data)
 })
